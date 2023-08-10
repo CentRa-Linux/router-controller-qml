@@ -22,7 +22,7 @@ def req():
 
 def up():
     global lm, rm
-    lm = min(200, max(rm, lm) + 50)
+    lm = min(250, max(rm, lm) + 50)
     rm = lm
     req()
     set()
@@ -30,7 +30,7 @@ def up():
 
 def down():
     global lm, rm
-    lm = max(-200, min(rm, lm) - 50)
+    lm = max(-250, min(rm, lm) - 50)
     rm = lm
     req()
     set()
@@ -38,16 +38,16 @@ def down():
 
 def left():
     global lm, rm
-    lm = min(max(-200, lm - 50), 200)
-    rm = min(max(-200, rm + 50), 200)
+    lm = min(max(40, lm - 50), 250)
+    rm = min(max(40, rm + 50), 250)
     req()
     set()
 
 
 def right():
     global lm, rm
-    lm = min(max(-200, lm + 50), 200)
-    rm = min(max(-200, rm - 50), 200)
+    lm = min(max(40, lm + 50), 250)
+    rm = min(max(40, rm - 50), 250)
     req()
     set()
 
@@ -60,7 +60,7 @@ def space():
     set()
 
 
-url = "http://192.168.8.1:8080/operation"
+url = "http://piyopiyo-router.local:8080/operation"
 lm = 0
 rm = 0
 
