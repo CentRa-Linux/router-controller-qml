@@ -2,6 +2,7 @@
 import sys
 import subprocess
 import requests
+from PySide2.QtCore import QUrl
 from PySide2.QtGui import QGuiApplication
 from PySide2.QtQuick import QQuickItem
 from PySide2.QtQml import QQmlApplicationEngine, QQmlComponent
@@ -16,7 +17,7 @@ def set():
 def req():
     global lm, rm
     item_data = {"left": lm, "right": rm}
-    requests.post(url, headers={}, json=item_data)
+    session.post(url, headers={}, json=item_data)
     set()
 
 
@@ -60,13 +61,14 @@ def space():
     set()
 
 
-url = "http://piyopiyo-router.local:8080/operation"
+url = "http://172.17.0.153:8080/operation"
 lm = 0
 rm = 0
 
+session = requests.Session()
 app = QGuiApplication(sys.argv)
 engine = QQmlApplicationEngine()
-component = QQmlComponent(engine, "main.qml")
+component = QQmlComponent(engine, QUrl("main.qml"))
 obj = component.create()
 obj.upPressed.connect(up)
 obj.downPressed.connect(down)
